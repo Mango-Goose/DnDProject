@@ -25,8 +25,22 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        dialogueText.text = sentences.Peek();
-        sentences.Dequeue();
+        if (sentences.Count <= 0)
+        {
+            FinishDialogue();
+        }
+        else
+        {
+            dialogueText.text = sentences.Peek();
+            sentences.Dequeue();
+        }
+    }
+
+    public void FinishDialogue()
+    {
+        //set dialogue panel animation and change state so player can start moving and it doesn't stay on the HUD
+        dialogueText.text = null;
+        Debug.Log("FInished");
     }
 
     // Update is called once per frame
